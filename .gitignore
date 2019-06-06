@@ -3,3 +3,4 @@ venv/
 node_modules/
 static/data/
 js/url/
+tmp*
