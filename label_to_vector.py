@@ -197,7 +197,9 @@ def get_category2tokens_list():
   return category2tokens_list
 
 
-def get_XY(category2tokens_list):
+def get_XY():
+  category2tokens_list = get_category2tokens_list()
+
   too_few_categories = []
   # サンプルデータ内のカテゴリの出現数を同じにする
   for category in category2tokens_list:
@@ -270,7 +272,6 @@ def apply_reductor(X, Y, dictionary, reductor):
 
 
 if __name__ == "__main__":
-  category2tokens_list_ = get_category2tokens_list()
-  X_train_, Y_train_, X_test_, Y_test_ = get_XY(category2tokens_list_)
+  X_train_, Y_train_, X_test_, Y_test_ = get_XY()
   print(X_train_, Y_train_, X_test_, Y_test_)
   pass
