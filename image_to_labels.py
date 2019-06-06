@@ -217,7 +217,7 @@ def modify_labels(labels: List[Dict[str, Any]]):
   pass
 
 
-def get_labels_and_rects(jpg_path, rects_json_path):
+def get_labels_and_rects(jpg_path: str, rects_json_path: str):
   labels = get_labels(jpg_path)
   modify_labels(labels)
   with open(rects_json_path) as f:
@@ -259,7 +259,7 @@ def put_label(image, x, y, label):
 
 
 if __name__ == "__main__":
-  labels, rects = image_to_labels("data/2fafe42e/1.jpg", "data/2fafe42e/1.json")
-  print(labels)
-  print(rects)
+  labels_, rects_ = image_to_labels("data/2fafe42e/1.jpg", "data/2fafe42e/1.json")
+  print(labels_)
+  print(rects_)
   pass
