@@ -1,0 +1,5 @@
+venv/
+.idea
+node_modules/
+data/
+js/url/

@@ -1,0 +1,15 @@
+mecab-python3
+beautifulsoup4
+pandas
+gensim
+sklearn
+numpy
+pillow
+opencv-python
+imutils
+flask
+lxml
+keras
+pyocr
+regex
+tensorflow
