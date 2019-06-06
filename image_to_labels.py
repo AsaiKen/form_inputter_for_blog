@@ -4,7 +4,6 @@ import os
 import re
 from typing import Dict, List, Any
 
-import MeCab
 import cv2
 import imutils
 import numpy as np
@@ -13,10 +12,6 @@ import regex
 from PIL import Image, ImageFont, ImageDraw
 
 FONT = ImageFont.truetype('./ipagp.ttf', 20)
-
-# https://shogo82148.github.io/blog/2015/12/20/mecab-in-python3-final/
-mecab_tokenizer = MeCab.Tagger("")
-mecab_tokenizer.parse('')
 
 PYOCR_TOOL = pyocr.get_available_tools()[0]
 PYOCR_LANGS = PYOCR_TOOL.get_available_languages()
@@ -196,20 +191,6 @@ def get_sub_img(img: np.ndarray, base_img: np.ndarray) -> np.ndarray:
   return thresh
 
 
-def tokenize(text: str) -> List[str]:
-  tokens = []
-  node = mecab_tokenizer.parseToNode(text)
-  while node:
-    feats = node.feature.split(",")
-    surface = node.surface
-    if feats[0] in ['名詞'] or surface in ["あり", "有り", "アリ", "なし", "無し", "ナシ"]:
-      surface = re.sub(r"\d", "0", surface)
-      tokens.append(surface)
-    node = node.next
-  # print(text, tokens)
-  return tokens
-
-
 def modify_labels(labels: List[Dict[str, Any]]):
   for label in labels:
     pattern = r"[\s!\"#$%&()*+,./:;<=>?\[\\\]^_`{|}　、。，．・：；？！´｀¨＾￣＿〃仝〆／＼～∥｜…‥‘“”（）〔〕［］｛｝〈〉《》「」『』【】]+"
@@ -259,7 +240,7 @@ def put_label(image, x, y, label):
 
 
 if __name__ == "__main__":
-  labels_, rects_ = image_to_labels("data/2fafe42e/1.jpg", "data/2fafe42e/1.json")
+  labels_, rects_ = image_to_labels("static/data/2fafe42e/1.jpg", "static/data/2fafe42e/1.json")
   print(labels_)
   print(rects_)
   pass
