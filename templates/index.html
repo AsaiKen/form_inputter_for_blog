@@ -1,0 +1,35 @@
+<html lang="ja">
+<head>
+</head>
+<body>
+<h1>ラベル選択</h1>
+{% if page %}
+<div>{{page.page_id}}_{{page.form_id}}_{{page.typetext_id}}</div>
+<div id="screenshot" style="position: relative; overflow: scroll; width: 900px; height: 800px; float: left; margin-right: 30px">
+    <img src="static/data/{{page.page_id}}/{{page.form_id}}.jpg" width="{{page.form_rect.width}}px"
+         height="{{page.form_rect.height}}px"/>
+    <div style="position:absolute; top:{{page.tt_rect.y - page.form_rect.y}}px; left:{{page.tt_rect.x - page.form_rect.x}}px; width:{{page.tt_rect.width}}; height:{{page.tt_rect.height}}; border:3px solid #ff0000"></div>
+</div>
+<form method="POST">
+    <input type="hidden" name="page_id" value="{{page.page_id}}">
+    <input type="hidden" name="form_id" value="{{page.form_id}}">
+    <input type="hidden" name="typetext_id" value="{{page.typetext_id}}">
+    <input type="submit" name="delete" value="削除"/><br><br>
+    <input type="text" id="v" name="v" placeholder="ラベルを入力してください" value="{{page.v}}" autofocus>
+    <input type="submit" name="submit" value="送信"/>
+</form>
+<div style="height: 800px; overflow: scroll;">
+{% for cand in page.candidates %}
+<a href="javascript:return false;" onclick="setV('{{cand}}')">{{cand}}</a><br>
+{% endfor %}
+</div>
+<div style="clear: both;"></div>
+{% endif %}
+</body>
+<script>
+function setV(v) {
+    document.getElementById("v").value = v;
+}
+document.getElementById("screenshot").scrollTop = {{page.tt_rect.y - page.form_rect.y}} - 60;
+</script>
+</html>
