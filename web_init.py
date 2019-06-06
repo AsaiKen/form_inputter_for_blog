@@ -47,9 +47,8 @@ def translate_format():
     print(rects)
     with open(name.replace("_texts.json", ".json"), "w") as f:
       json.dump(rects, f, indent=2)
-    os.remove(name)
 
 
 if __name__ == "__main__":
-  # create_resultcsv()
+  create_resultcsv()
   translate_format()
