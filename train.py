@@ -57,8 +57,8 @@ def train_dl(X_train, Y_train, X_test, Y_test):
   assert len(X_test2) == len(Y_test2)
 
   model = Sequential()
-  model.add(Dense(16, activation='relu', input_shape=(X_train2.shape[1],)))
-  model.add(Dense(16, activation='relu'))
+  model.add(Dense(64, activation='relu', input_shape=(X_train2.shape[1],)))
+  model.add(Dense(64, activation='relu'))
   model.add(Dense(Y_train2.shape[1], activation='softmax'))
   # model.summary()
   model.compile(loss=categorical_crossentropy, optimizer=Adadelta(), metrics=['accuracy'])
